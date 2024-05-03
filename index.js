@@ -60,6 +60,7 @@ function transform({
   parse,
   ast = parse(code),
   sourcemap = false,
+  prefix,
   strict = false,
   resolveGlobal = () => {},
   name
@@ -146,7 +147,7 @@ function transform({
   }
 
   function getPrefix() {
-    return exportBindings.size ? `var ${name} = ` : "";
+    return prefix ?? exportBindings.size ? `var ${name} = ` : "";
   }
 
   function getBindingName([prop, source]) {
